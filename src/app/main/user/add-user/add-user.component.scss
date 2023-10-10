@@ -1,0 +1,98 @@
+/* user-registration-form.component.css */
+/* user-registration-form.component.css */
+
+/* Center the form both horizontally and vertically */
+.container {
+  display: flex;
+  justify-content: right; /* Center horizontally */
+}
+
+/* Style the form container */
+.form-container {
+  width: 500px;
+  // margin: 100px;
+  padding: 20px;
+  // border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+/* Style form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Style input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 50%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Disable the button when the form is invalid */
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  background-color: #1c1c1c; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
+/* Style form labels */
+.dark-theme label {
+  color: #fff; /* Light text color */
+}
+
+/* Style input fields */
+.dark-theme input[type="text"],
+.dark-theme input[type="email"],
+.dark-theme input[type="password"] {
+  background-color: #333; /* Dark input background color */
+  color: #fff; /* Light text color */
+  border-color: #444; /* Dark border color */
+}
+
+/* Style the submit button */
+.dark-theme button[type="submit"] {
+  background-color: #007bff; /* Blue button color */
+  color: #fff; /* Light text color */
+}
+
+/* user-registration-form.component.css */
+
+/* Animate the background */
+@keyframes animatedBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Apply the animation to the form container */
+.form-container.dark-theme {
+  animation: animatedBackground 10s linear infinite;
+  background-size: 200% 200%;
+}

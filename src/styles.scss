@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+/* styles.css (or styles.scss) */
+
+/* Dark theme styles for the entire page */
+body {
+  background-color: #1c1c1c; /* Dark background color */
+  color: #fff; /* Light text color */
+}
+
+/* Apply the dark theme to other elements as needed */
+/* For example, links and headings */
+a {
+  color: #007bff; /* Link color */
+}
+
+h1, h2, h3 {
+  color: #fff; /* Heading text color */
+}
+
+/* styles.css (or styles.scss) */
+
+/* Animate the background */
+@keyframes animatedBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Apply the animation to the entire page */
+body {
+  animation: animatedBackground 10s linear infinite;
+  background-size: 200% 200%;
+}
