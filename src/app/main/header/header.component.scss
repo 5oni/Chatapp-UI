@@ -1,0 +1,52 @@
+/* header.component.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #202020;
+  color: #fff;
+}
+.logo img {
+
+  width: 70px; /* Adjust the width as needed */
+  height: 70px; /* Adjust the height as needed */
+}
+
+
+.user-info span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+
+}
+
+.nav li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Add hover effect for list items */
+.nav li {
+  display: inline;
+  margin-right: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Define the hover effect */
+.nav li:hover {
+  transform: translateY(-2px);
+  font-size: 17px;
+}

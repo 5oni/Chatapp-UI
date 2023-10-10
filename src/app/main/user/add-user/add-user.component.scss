@@ -1,10 +1,7 @@
-/* user-registration-form.component.css */
-/* user-registration-form.component.css */
 
-/* Center the form both horizontally and vertically */
 .container {
   display: flex;
-  justify-content: right; /* Center horizontally */
+  justify-content: right;
 }
 
 /* Style the form container */
@@ -77,22 +74,4 @@ button[type="submit"]:disabled {
 .dark-theme button[type="submit"] {
   background-color: #007bff; /* Blue button color */
   color: #fff; /* Light text color */
-}
-
-/* user-registration-form.component.css */
-
-/* Animate the background */
-@keyframes animatedBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Apply the animation to the form container */
-.form-container.dark-theme {
-  animation: animatedBackground 10s linear infinite;
-  background-size: 200% 200%;
 }

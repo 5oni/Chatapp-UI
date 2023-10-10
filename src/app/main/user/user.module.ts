@@ -5,6 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { UserComponent } from './user.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     UserRoutingModule
   ]
 })

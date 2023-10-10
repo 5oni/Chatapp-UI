@@ -1,19 +1,39 @@
-<!-- user-list.component.html -->
+<div class="container">
+  <div class="left-column">
+    <!-- User Registration Form Component -->
 
-<!-- <h2>User List</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Password</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.password }}</td>
-    </tr>
-  </tbody>
-</table> -->
+    <h2>User List</h2>
+    <div class="table-container">
+
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th class="sn" scope="col">S.No.</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usersList| paginate: { itemsPerPage: 20, currentPage: page };let i=index">
+            <td>{{(page-1)*20 +i+1 }}</td>
+            <!-- <td>{{ i+1 }}</td> -->
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.password }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center pagination-class">
+      <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+      <!-- <pagination-controls ></pagination-controls> -->
+
+    </div>
+  </div>
+  <div class="right-column">
+    <!-- User List Table Component -->
+    <app-add-user></app-add-user>
+
+  </div>
+</div>
