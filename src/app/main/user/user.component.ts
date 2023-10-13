@@ -9,13 +9,25 @@ import { UserService } from './services/user.service';
 export class UserComponent implements OnInit {
 
   usersList: any;
-  page: 1
+  page: number
 
   constructor(private userDataService: UserService) { }
 
   ngOnInit(): void {
-    this.usersList = this.userDataService.getUsers();
+    this.getUserListing();
     this.page = 1
+  }
+
+  getUserListing() {
+    this.userDataService.getUsersList().subscribe({
+      next: (resp: any) => {
+        console.log(resp.data);
+        this.usersList = resp.data
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    })
   }
 
   pageChanged(e: any) {

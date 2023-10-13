@@ -1,0 +1,29 @@
+<div class="container">
+
+
+  <div class="form-container dark-theme">
+    <i class="fa fa-arrow-left fa-2x" (click)="goBack()"></i>
+    <h2>Add Group</h2>
+    <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" required>
+        <app-show-error [control]="name"></app-show-error>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" id="description" formControlName="description">
+
+      </div>
+
+      <div class="form-group">
+      </div>
+
+
+
+
+      <button type="submit" [disabled]="groupForm.invalid">Add</button>
+    </form>
+
+  </div>
+</div>

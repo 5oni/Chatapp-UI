@@ -6,6 +6,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     NgxPaginationModule,
     UserRoutingModule

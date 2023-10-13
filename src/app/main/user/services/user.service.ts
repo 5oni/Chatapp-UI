@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,37 +6,25 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  private users = [
-    { name: 'John Doe', email: 'john@example.com', password: 'password123' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    { name: 'Jane Smith', email: 'jane@example.com', password: 'secret456' },
-    // Add more users as needed
-  ];
-
-  getUsers() {
-    return this.users;
+  getUsersList() {
+    return this.http.get('/user/v1/list');
   }
+
+  checkEmailExists(data: any) {
+    return this.http.get('/user/v1/email/exists', data);
+  }
+
+  checkUserNameExists(data: any) {
+    return this.http.get('/user/v1/username/exists', data);
+  }
+
+  addNewUser(data: any) {
+    return this.http.post('/user/v1/add', data);
+  }
+
+
 }

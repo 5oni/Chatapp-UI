@@ -28,7 +28,7 @@ input[type="email"],
 input[type="password"] {
   width: 50%;
   padding: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
@@ -72,6 +72,6 @@ button[type="submit"]:disabled {
 
 /* Style the submit button */
 .dark-theme button[type="submit"] {
-  background-color: #007bff; /* Blue button color */
+  background-color: #012e04; /* Blue button color */
   color: #fff; /* Light text color */
 }

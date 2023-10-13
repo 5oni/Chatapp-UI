@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -8,17 +9,67 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddUserComponent {
   userForm: FormGroup;
+  @Output()
+  updateUsers: EventEmitter<any> = new EventEmitter();
 
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder, private userDataService: UserService) { }
 
   ngOnInit() {
     // Initialize the form with FormBuilder
     this.userForm = this.fb.group({
       name: ['', Validators.required],
+      userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+
+  checkUsernameAvailability() {
+    let userName = this.userForm?.value?.userName
+    if (!userName || !this.userForm.controls['userName']?.valid) {
+      return
+    }
+    let payload = {
+      userName
+    }
+    this.userDataService.checkUserNameExists({ params: payload }).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+      },
+      error: (e) => {
+        this.userForm.controls['userName'].setErrors({ 'available': { value: e?.error?.data, field: 'Username' } });
+        console.error(e);
+      }
+    }
+    )
+  }
+
+  checkEmailAvailability() {
+    let email = this.userForm?.value?.email
+    if (!email || !this.userForm.controls['email'].valid) {
+      return
+    }
+    let payload = {
+      email
+    }
+    this.userDataService.checkEmailExists({ params: payload }).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+      },
+      error: (e) => {
+        this.userForm.controls['email'].setErrors({ 'available': { value: e?.error?.data, field: 'email' } });
+        console.error(e);
+      }
+    }
+    )
+  }
+
+  get userName() { return this.userForm.get('userName') }
+  get email() { return this.userForm.get('email') }
+  get password() { return this.userForm.get('password') }
+  get name() { return this.userForm.get('name') }
 
   onSubmit() {
     if (this.userForm.valid) {
@@ -26,11 +77,17 @@ export class AddUserComponent {
       const userData = this.userForm.value;
       console.log('User Details:', userData);
 
-      // You can send the user data to your backend API for registration here
-      // Example: Call a registration service
-      // this.userService.registerUser(userData).subscribe(response => {
-      //   // Handle the API response here
-      // });
+      this.userDataService.addNewUser(userData).subscribe({
+        next: (resp: any) => {
+          console.log(resp);
+          this.updateUsers.emit()
+          this.userForm.reset()
+        },
+        error: (e) => {
+          console.error(e);
+        }
+      }
+      )
     }
   }
 

@@ -1,9 +1,6 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center; /* Center vertically */
-  align-items: center; /* Center vertically */
-  height: 90vh
 }
 
 /* Style the form container */
@@ -76,4 +73,34 @@ button[type="submit"]:disabled {
 .dark-theme button[type="submit"] {
   background-color: #012e04; /* Blue button color */
   color: #fff; /* Light text color */
+}
+
+.select-container {
+  position: relative;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.selected-values {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.selected-item {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.selected-item:hover {
+  background-color: #0056b3;
 }

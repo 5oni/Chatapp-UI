@@ -11,7 +11,7 @@
             <th class="sn" scope="col">S.No.</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Password</th>
+            <th scope="col">Username</th>
           </tr>
         </thead>
         <tbody>
@@ -20,12 +20,13 @@
             <!-- <td>{{ i+1 }}</td> -->
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.password }}</td>
+            <td>{{ user.userName }}</td>
           </tr>
+          <td class="text-center" colspan="5" *ngIf='!usersList?.length'>No Users </td>
         </tbody>
       </table>
     </div>
-    <div class="text-center pagination-class">
+    <div *ngIf='usersList?.length' class="text-center pagination-class">
       <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
       <!-- <pagination-controls ></pagination-controls> -->
 
@@ -33,7 +34,7 @@
   </div>
   <div class="right-column">
     <!-- User List Table Component -->
-    <app-add-user></app-add-user>
+    <app-add-user (updateUsers)="getUserListing()"></app-add-user>
 
   </div>
 </div>

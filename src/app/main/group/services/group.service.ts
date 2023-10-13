@@ -4,15 +4,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class GroupService {
 
   constructor(
     private http: HttpClient
-
   ) { }
 
-  loginUser(data: any) {
-    return this.http.post('/auth/v1/login', data);
+  getGroupsList() {
+    return this.http.get('/group/v1/list');
   }
 
+  addNewGroup(data: any) {
+    return this.http.post('/group/v1/add', data);
+  }
 }
