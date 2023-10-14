@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,6 +9,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppInterceptorService } from './services/app-interceptor.service';
 import { HeaderComponent } from './main/header/header.component';
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const httpInterceptorProvider = [
   {
@@ -25,12 +27,14 @@ export const httpInterceptorProvider = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    MultiSelectModule
     // NgMultiSelectDropDownModule,
 
   ],

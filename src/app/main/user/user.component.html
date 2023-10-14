@@ -32,7 +32,7 @@
 
     </div>
   </div>
-  <div class="right-column">
+  <div *ngIf='showAddUser' class="right-column">
     <!-- User List Table Component -->
     <app-add-user (updateUsers)="getUserListing()"></app-add-user>
 

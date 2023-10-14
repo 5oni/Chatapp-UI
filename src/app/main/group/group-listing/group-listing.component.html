@@ -1,14 +1,84 @@
-<!-- group-list.component.html -->
-
-<div>
-  <a routerLink="/main/group/add">
-    <i class="fa fa-plus fa-2x" aria-hidden="true"> </i>
+<div class="container">
+  <!-- Group List -->
+  <a class="fl" routerLink="/main/group/add">
+    <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
   </a>
-</div>
 
-<div *ngFor="let group of groupList">
-  <div class="group-item">
-    <h3>{{ group.name }}</h3>
-    <p>{{ group.description }}</p>
+  <div class="groupList">
+
+
+    <div *ngFor="let group of groupList">
+      <div (click)="openGroupChat(group)" class="group-item">
+        <img class="group-logo" src="./../../../../assets/Chat-logo.png">
+        <h3 class="group-name">{{ group.name }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Container -->
+  <div *ngIf="selectedGroup" class="chat-container">
+    <div class="group-data">
+      <img class="group-data-logo" src="./../../../../assets/Chat-logo.png">
+      <div class="group-data-name"> {{selectedGroup?.name}}</div>
+    </div>
+    <div id="messages-container" class="messages-container" #messagesContainer>
+
+      <div *ngFor="let message of chatMessages;let i=index" class="messages">
+        <div *ngIf="showDate(i)" class="msg-dates"><span>{{message?.createdAt | dateParser}}</span></div>
+        <div *ngIf="message?.sender?._id==currentUserId" class="msgWithReaction">
+          <div class="self-msg-box">
+            <div class="emoji-btn" (click)="showReactionsPopup(message, $event,-1, i)">☺</div>
+
+            <div class="self-message">
+              <div class="message-text">{{ message?.message }}</div>
+              <div class="msg-time">{{message.createdAt | timeParser}}</div>
+            </div>
+          </div>
+          <div *ngIf="message.reactions?.length" class="self-reactions" title="Tap to remove reaction">
+            <div *ngFor="let reaction of message.reactions" class="reaction">
+              <span (click)='removeEmojiReaction(reaction, i)' class="emoji">{{ reaction.emoji }}</span>
+              <!-- <span class="count">{{ reaction.userId?.name }}</span> -->
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="message?.sender?._id!==currentUserId" class="msgWithReaction">
+
+          <div class="other-msg-box">
+
+            <div class="msg-box">
+              <div class="sender-name">{{ message?.sender?.name || 'Deleted User' }}</div>
+              <div class="message-text">{{ message?.message }}</div>
+              <div class="msg-time">{{message.createdAt | timeParser}}</div>
+            </div>
+            <div class="emoji-btn" (click)="showReactionsPopup(message, $event, 1, i)">☺</div>
+          </div>
+
+          <div *ngIf="message.reactions?.length" class="reactions" title="Tap to remove reaction">
+            <div *ngFor="let reaction of message.reactions" class="reaction">
+              <span (click)='removeEmojiReaction(reaction, i)' class="emoji">{{ reaction.emoji }}</span>
+              <!-- <span class="count">{{ reaction.userId?.name }}</span> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="new-message">
+      <input [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message" />
+      <i class="fa fa-send-o send-btn" (click)="sendMessage()"></i>
+
+    </div>
+  </div>
+  <div *ngIf="!selectedGroup" class="chat-container">
+
+  </div>
+
+
+  <div [ngStyle]="positionStyles" tabindex="1" class="react-popup" (blur)="onblurDiv()" #reactionDiv>
+    <emoji-mart class="emoji-mart" *ngIf="showReactions" (emojiSelect)="addReaction($event)"
+      [include]="emojiMartConfig.include" [sheetSize]="16" [enableSearch]="false" title="Choose your emoji"
+      [showPreview]="false" [style]="emojiMartConfig.style">
+    </emoji-mart>
   </div>
 </div>

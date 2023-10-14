@@ -52,7 +52,7 @@ export class AppInterceptorService implements HttpInterceptor {
             }
             // this.notifyService.showToast('Error', err.error.err, 'error');
             if (err.status === 401 || err.status === 403) {
-              // this.sharedService.logout();
+              this.sharedService.logout();
             }
           }
         }),

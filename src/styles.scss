@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 /* styles.css (or styles.scss) */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 /* Dark theme styles for the entire page */
 body {
   background-color: #1c1c1c; /* Dark background color */
   color: #fff; /* Light text color */
+  font-family: Inter, sans-serif;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 
 /* Apply the dark theme to other elements as needed */
@@ -13,7 +19,9 @@ a {
   color: #007bff; /* Link color */
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: #fff; /* Heading text color */
 }
 
@@ -36,10 +44,22 @@ body {
 }
 
 .text-center {
-	text-align: center;
+  text-align: center;
 }
 
-
-a{
+a {
   cursor: pointer;
+  color: #fff;
+}
+
+.p-multiselect-label-container {
+  width: 300px !important;
+}
+
+.p-dialog .p-dialog-header{
+  padding: 0;
+}
+
+.p-dialog .p-dialog-content{
+  padding: 8px;
 }

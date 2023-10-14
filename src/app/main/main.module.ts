@@ -6,6 +6,7 @@ import { MainComponent } from './main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeaderComponent } from './header/header.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
@@ -15,6 +16,9 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    MultiSelectModule,
+
     ReactiveFormsModule,
     NgxPaginationModule,
     MainRoutingModule

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
+import { CommonApiService } from 'src/app/services/common-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -9,11 +11,18 @@ import { UserService } from './services/user.service';
 export class UserComponent implements OnInit {
 
   usersList: any;
-  page: number
+  page: number;
+  showAddUser = false
 
-  constructor(private userDataService: UserService) { }
+  constructor(private userDataService: UserService,
+    private commonApiService: CommonApiService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    if (this.commonApiService.getUserDetails()?.role == 'ADMIN') {
+      this.showAddUser = true
+    }
     this.getUserListing();
     this.page = 1
   }

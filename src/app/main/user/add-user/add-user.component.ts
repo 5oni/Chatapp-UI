@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { CommonApiService } from 'src/app/services/common-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -13,9 +15,18 @@ export class AddUserComponent {
   updateUsers: EventEmitter<any> = new EventEmitter();
 
 
-  constructor(private fb: FormBuilder, private userDataService: UserService) { }
+  constructor(private fb: FormBuilder, private userDataService: UserService,
+    private commonApiService: CommonApiService,
+    private router: Router,
+
+
+  ) { }
 
   ngOnInit() {
+    if (this.commonApiService.getUserDetails()?.role != 'ADMIN') {
+      this.router.navigate(['main'])
+      return
+    }
     // Initialize the form with FormBuilder
     this.userForm = this.fb.group({
       name: ['', Validators.required],

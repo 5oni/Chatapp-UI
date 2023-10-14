@@ -1,0 +1,256 @@
+.container {
+  display: flex; /* Use flex layout to align elements side by side */
+  margin: 0 250px;
+  // background-color: black;
+}
+div::-webkit-scrollbar {
+  display: none;
+}
+.groupList {
+  flex: 0.4; /* Take up 50% of the container width */
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  overflow-y: auto; /* Enable vertical scrolling if necessary */
+}
+.group-item {
+  display: flex;
+  cursor: pointer;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 2px;
+  background-color: rgb(4, 22, 22);
+  border-radius: 15px;
+}
+.group-name {
+  flex: 1;
+}
+.group-logo {
+  flex: 0.3;
+  height: 60px;
+  // width: 20px;
+}
+
+/* Style for each chat message */
+.messages {
+  margin-bottom: 5px;
+  // cursor: pointer;
+}
+
+/* Style for the message text */
+.message-text {
+  color: #000000;
+  display: inline-block;
+}
+
+/* Style for the new message input and send button */
+.new-message {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 1px; /* Adjust the margin to your preference */
+}
+
+.new-message button:hover {
+  background-color: #0056b3;
+}
+
+/* Rest of your existing styles for group list and chat container */
+
+/* Style for the chat container */
+.chat-container {
+  flex: 1;
+  min-width: 700px;
+  min-height: 80vh;
+  margin: 0 auto;
+  padding: 2px 10px;
+  border: 1px solid #ccc;
+  background-color: #d3d0d0;
+  border-radius: 10px;
+}
+
+.group-data {
+  // background-color: #ece6e6;
+  background-color: #f5efef;
+
+  color: #000000;
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 2px;
+  border-radius: 12px;
+}
+.group-data-logo {
+  height: 50px;
+}
+
+.group-data-name {
+  padding: 10px 0;
+  font-size: 20px;
+}
+.self-message {
+  float: right;
+  background-color: #fcfcfc;
+  padding: 10px 50px 10px 10px;
+  width: fit-content;
+  border-radius: 12px;
+  position: relative;
+}
+
+.msg-dates {
+  color: #000000;
+  display: flex;
+  justify-content: center;
+}
+.msg-dates span {
+  background-color: #f5efef;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 8px 15px;
+}
+
+.new-message button {
+  background-color: #0074d9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.new-message input {
+  flex: 1;
+  font-size: 18px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Style for the messages container */
+.messages-container {
+  overflow-y: scroll;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  flex: 0.7;
+}
+
+/* Style for the message box */
+.msg-box {
+  background-color: #fcfcfc;
+  padding: 10px 50px 10px 10px;
+  width: fit-content;
+  border-radius: 12px;
+  position: relative; /* Required for absolute positioning of msg-time */
+}
+
+/* Style for the sender's name */
+.sender-name {
+  font-weight: bold;
+  width: fit-content;
+  color: #0074d9;
+}
+
+/* Style for the time in the message box */
+.msg-time {
+  font-size: 10px;
+  color: #000000;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-weight: 250;
+}
+
+.send-btn {
+  font-size: 40px;
+  color: #000000;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.emoji-btn {
+  // display: inline;
+  padding: 5px 0;
+  font-size: 30px;
+  cursor: pointer;
+}
+.other-msg-box {
+  display: flex;
+  margin-bottom: 15px;
+}
+.self-msg-box {
+  display: flex;
+  margin-bottom: 15px;
+  float: right;
+}
+.react-popup {
+  position: absolute;
+  // width: 100px;
+  // overflow-x: hidden;
+}
+.emoji-mart {
+  height: 100px;
+  cursor: pointer;
+}
+.msgWithReaction {
+  // display: flex;
+  position: relative;
+}
+.reactions {
+  cursor: pointer;
+  position: absolute;
+  z-index: 200;
+  display: flex;
+  background-color: #f8f8f8;
+  padding: 3px;
+  border-radius: 5px;
+  width: fit-content;
+  bottom: -16px;
+  left: 10px;
+}
+
+.self-reactions {
+  cursor: pointer;
+  position: relative;
+  z-index: 200;
+  display: flex;
+  float: right;
+  background-color: #f8f8f8;
+  padding: 3px;
+  border-radius: 5px;
+  width: fit-content;
+  bottom: -30px;
+  right: -80px;
+}
+
+/* Media Query for Smaller Screens */
+@media screen and (max-width: 1500px) {
+  .container {
+    font-size: smaller;
+    max-height: 80vh;
+  }
+
+  .groupList {
+    flex: 1;
+    border-right: none;
+    overflow-y: initial;
+    padding: 0;
+  }
+
+  .group-item {
+    padding: 10px;
+  }
+
+  .chat-container {
+    min-width: initial;
+    flex: 1;
+  }
+
+  .new-message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .messages-container {
+    max-height: 60vh;
+  }
+}
