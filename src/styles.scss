@@ -47,7 +47,8 @@ body {
   text-align: center;
 }
 
-a {
+a,
+i {
   cursor: pointer;
   color: #fff;
 }
@@ -56,10 +57,10 @@ a {
   width: 300px !important;
 }
 
-.p-dialog .p-dialog-header{
+.p-dialog .p-dialog-header {
   padding: 0;
 }
 
-.p-dialog .p-dialog-content{
+.p-dialog .p-dialog-content {
   padding: 8px;
 }

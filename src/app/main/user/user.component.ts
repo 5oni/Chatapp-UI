@@ -44,5 +44,8 @@ export class UserComponent implements OnInit {
     this.page = e
 
   }
+  editNavigate(userId: any) {
+    this.router.navigate(['/main/user/edit/', userId])
+  }
 
 }

@@ -1,0 +1,36 @@
+<!-- user-registration-form.component.html -->
+<div class="container">
+
+  <div class="form-container dark-theme">
+    <h2>Edit User</h2>
+    <form [formGroup]="userEditForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" required>
+        <app-show-error [control]="name"></app-show-error>
+      </div>
+      <div class="form-group">
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" formControlName="userName" (blur)="checkUsernameAvailability()" required>
+        <app-show-error [control]="userName"></app-show-error>
+
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" (blur)="checkEmailAvailability()" required>
+        <app-show-error [control]="email"></app-show-error>
+
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+        <app-show-error [control]="password"></app-show-error>
+
+      </div>
+
+      <button type="submit" [disabled]="userEditForm.invalid">Edit</button>
+    </form>
+  </div>
+</div>

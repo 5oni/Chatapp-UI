@@ -12,6 +12,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Username</th>
+            <th *ngIf="showAddUser" scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,11 @@
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.userName }}</td>
+            <td *ngIf="showAddUser">
+              <div>
+                <i (click)='editNavigate(user._id)' class="fa fa-edit"></i>
+              </div>
+            </td>
           </tr>
           <td class="text-center" colspan="5" *ngIf='!usersList?.length'>No Users </td>
         </tbody>

@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
   declarations: [
     AddUserComponent,
-    UserComponent
+    UserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,

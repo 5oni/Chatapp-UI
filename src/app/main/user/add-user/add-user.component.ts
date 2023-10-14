@@ -24,7 +24,7 @@ export class AddUserComponent {
 
   ngOnInit() {
     if (this.commonApiService.getUserDetails()?.role != 'ADMIN') {
-      this.router.navigate(['main'])
+      this.router.navigate(['main/user'])
       return
     }
     // Initialize the form with FormBuilder

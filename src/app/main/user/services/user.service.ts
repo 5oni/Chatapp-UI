@@ -14,6 +14,10 @@ export class UserService {
     return this.http.get('/user/v1/list');
   }
 
+  getUserDetails(data: any) {
+    return this.http.get('/user/v1/details', data);
+  }
+
   checkEmailExists(data: any) {
     return this.http.get('/user/v1/email/exists', data);
   }
@@ -25,6 +29,10 @@ export class UserService {
   addNewUser(data: any) {
     return this.http.post('/user/v1/add', data);
   }
+  updateUserDetails(data: any) {
+    return this.http.post('/user/v1/edit', data);
+  }
+
 
 
 }
