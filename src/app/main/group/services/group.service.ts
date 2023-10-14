@@ -23,6 +23,9 @@ export class GroupService {
   addNewGroup(data: any) {
     return this.http.post('/group/v1/add', data);
   }
+  addNewGroupMembers(data: any) {
+    return this.http.post('/group/v1/add/members', data);
+  }
   addChatReaction(data: any) {
     return this.http.post('/groupChat/v1/add/reaction', data);
   }

@@ -52,6 +52,16 @@ export class CommonApiService {
     return currentUserId;
   }
 
+  public getFromLocalStorage(key: any): string {
+    let value: any = window.localStorage.getItem(key);
+    let valueObj = JSON.parse(value);
+    return valueObj;
+  }
+  public setInLocalStorage(key: any, value: any): string {
+    let res: any = window.localStorage.setItem(key, JSON.stringify(value));
+    return res;
+  }
+
   public logout(): void {
     window.localStorage.clear();
     this.currentUser = null;

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonApiService } from 'src/app/services/common-api.service';
 import { interval } from 'rxjs';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { UserService } from '../../user/services/user.service';
 
 @Component({
   selector: 'app-group-listing',
@@ -23,6 +24,7 @@ export class GroupListingComponent {
       overflow: 'scroll',
     }
   }
+  groupNameSearch = ''
   groupList: any
   selectedGroup: any;
   chatMessages: any[] = []
@@ -37,23 +39,38 @@ export class GroupListingComponent {
   selectedChat: any
   selectedChatIndex: any
 
+  selectedMembers = []
+  usersList = []
+
   constructor(
     private groupService: GroupService,
     private router: Router,
     private sharedService: CommonApiService,
+    private userDataService: UserService
   ) { }
 
 
 
   ngOnInit() {
+    this.checkLocalStorage()
     this.getCurrentUser()
     this.getUserGroups()
+    this.getUserList()
     this.intervalId = setInterval(() => {
-      this.getSelectedGroupChat() //TODO
+      // this.getSelectedGroupChat() //TODO
     }, 1000)
   }
+  checkIfSearched(group: any) {
+    return group?.name?.toLowerCase().includes(this.groupNameSearch?.toLowerCase())
+  }
 
-
+  checkLocalStorage() {
+    let group = this.sharedService.getFromLocalStorage('selectedGroup')
+    if (group) {
+      this.selectedGroup = group
+      this.selectedMembers = this.selectedGroup.members
+    }
+  }
 
   scrollToBottom(): void {
     try {
@@ -127,7 +144,10 @@ export class GroupListingComponent {
 
   openGroupChat(group: any) {
     this.selectedGroup = group;
+    this.sharedService.setInLocalStorage('selectedGroup', group)
     this.getSelectedGroupChat()
+    this.selectedMembers = group.members
+
   }
 
   getSelectedGroupChat() {
@@ -216,6 +236,36 @@ export class GroupListingComponent {
       next: (resp: any) => {
         console.log(resp);
         this.chatMessages[index].reactions = this.chatMessages[index]?.reactions.filter((el: any) => el._id !== reaction._id)
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    })
+  }
+
+  getUserList() {
+    this.userDataService.getUsersList().subscribe({
+      next: (resp: any) => {
+        this.usersList = resp.data
+      },
+      error: (e) => {
+        console.error(e);
+      }
+    })
+  }
+  addNewMembers() {
+    console.log('this.selectedMembers  2', this.selectedMembers)
+    if (!this.selectedMembers?.length) {
+      return
+    }
+
+    let payload = {
+      groupId: this.selectedGroup?._id,
+      members: this.selectedMembers.map((el: any) => el?._id)
+    }
+    this.groupService.addNewGroupMembers(payload).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
       },
       error: (e) => {
         console.error(e);

@@ -1,14 +1,24 @@
 <div class="container">
   <!-- Group List -->
-  <a class="fl" routerLink="/main/group/add">
-    <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
-  </a>
-
   <div class="groupList">
+
+    <div class="searchAddBox">
+
+      <div class="searchBoxDiv" title="Search Groups">
+        <input class="searchBox" [(ngModel)]="groupNameSearch">
+      </div>
+      <div class="addGrpBtn" title="Add New Group">
+        <a class="fl" routerLink="/main/group/add">
+          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+
 
 
     <div *ngFor="let group of groupList">
-      <div (click)="openGroupChat(group)" class="group-item">
+      <div *ngIf="checkIfSearched(group)" (click)="openGroupChat(group)" class="group-item">
         <img class="group-logo" src="./../../../../assets/Chat-logo.png">
         <h3 class="group-name">{{ group.name }}</h3>
       </div>
@@ -20,6 +30,13 @@
     <div class="group-data">
       <img class="group-data-logo" src="./../../../../assets/Chat-logo.png">
       <div class="group-data-name"> {{selectedGroup?.name}}</div>
+      <div class="addMember">
+
+        <p-multiSelect [options]="usersList" [(ngModel)]="selectedMembers" defaultLabel="Add Members" optionLabel="name"
+          display="chip"></p-multiSelect>
+      </div>
+      <button (click)="addNewMembers()" class="add-btn" *ngIf="selectedMembers?.length">Update</button>
+
     </div>
     <div id="messages-container" class="messages-container" #messagesContainer>
 

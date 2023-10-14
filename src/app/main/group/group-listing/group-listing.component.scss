@@ -15,8 +15,8 @@ div::-webkit-scrollbar {
 .group-item {
   display: flex;
   cursor: pointer;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-bottom: 2px;
   background-color: rgb(4, 22, 22);
   border-radius: 15px;
@@ -106,23 +106,21 @@ div::-webkit-scrollbar {
   padding: 8px 15px;
 }
 
-.new-message button {
-  background-color: #0074d9;
-  color: white;
+.new-message i {
+  // background-color: #183802;
+  // border-radius: 100%;
+  color: rgb(13, 34, 3);
   border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  margin-left: 10px;
+  margin-left: 7px;
   cursor: pointer;
-  outline: none;
 }
 
 .new-message input {
   flex: 1;
   font-size: 18px;
-  padding: 15px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 15px;
   outline: none;
 }
 
@@ -223,6 +221,39 @@ div::-webkit-scrollbar {
   right: -80px;
 }
 
+.addMember {
+  margin-left: 200px;
+}
+.add-btn {
+  background-color: #012e04;
+  color: #fff; /* Light text color */
+  // width: 100%;
+  margin-left: 10px;
+  margin-top: 5px;
+  padding: 8px;
+  max-height: 30px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.searchAddBox {
+  display: flex;
+  padding: 10px;
+}
+
+.searchBoxDiv {
+  width: 90%;
+}
+.searchBox {
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+}
+.addGrpBtn {
+  margin-left: 10px;
+}
 /* Media Query for Smaller Screens */
 @media screen and (max-width: 1500px) {
   .container {
