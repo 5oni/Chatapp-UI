@@ -30,12 +30,13 @@
     <div class="group-data">
       <img class="group-data-logo" src="./../../../../assets/Chat-logo.png">
       <div class="group-data-name"> {{selectedGroup?.name}}</div>
-      <div class="addMember">
+
+      <div *ngIf="checkIfGroupAdmin()" class="addMember">
 
         <p-multiSelect [options]="usersList" [(ngModel)]="selectedMembers" defaultLabel="Add Members" optionLabel="name"
           display="chip"></p-multiSelect>
+        <button (click)="addNewMembers()" class="add-btn" *ngIf="selectedMembers?.length">Update</button>
       </div>
-      <button (click)="addNewMembers()" class="add-btn" *ngIf="selectedMembers?.length">Update</button>
 
     </div>
     <div id="messages-container" class="messages-container" #messagesContainer>

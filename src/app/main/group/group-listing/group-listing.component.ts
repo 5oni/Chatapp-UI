@@ -67,8 +67,9 @@ export class GroupListingComponent {
   checkLocalStorage() {
     let group = this.sharedService.getFromLocalStorage('selectedGroup')
     if (group) {
-      this.selectedGroup = group
-      this.selectedMembers = this.selectedGroup.members
+      this.openGroupChat(group)
+      // this.selectedGroup = group
+      // this.selectedMembers = this.selectedGroup.members
     }
   }
 
@@ -144,7 +145,7 @@ export class GroupListingComponent {
 
   openGroupChat(group: any) {
     this.selectedGroup = group;
-    this.sharedService.setInLocalStorage('selectedGroup', group)
+    // this.sharedService.setInLocalStorage('selectedGroup', group)
     this.getSelectedGroupChat()
     this.selectedMembers = group.members
 
@@ -271,6 +272,9 @@ export class GroupListingComponent {
         console.error(e);
       }
     })
+  }
+  checkIfGroupAdmin() {
+    return this.selectedGroup?.admins.map((el: any) => el._id)?.includes(this.currentUserId)
   }
 
   ngOnDestroy() {
