@@ -22,6 +22,7 @@ export class HeaderComponent {
 
   logout() {
     this.commonApiService.logout();
+    this.commonApiService.showSuccess("Logged Out")
   }
 
 }

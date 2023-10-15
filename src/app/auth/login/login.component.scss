@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center; /* Center vertically */
   align-items: center; /* Center vertically */
-  height: 90vh
+  height: 90vh;
 }
 
 /* Style the form container */
@@ -76,4 +76,16 @@ button[type="submit"]:disabled {
 .dark-theme button[type="submit"] {
   background-color: #012e04; /* Blue button color */
   color: #fff; /* Light text color */
+}
+
+.p-viewer {
+  z-index: 9999;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  // right: 1px;
+}
+
+.form-group {
+  position: relative;
 }

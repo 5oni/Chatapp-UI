@@ -19,9 +19,10 @@ export class GroupListingComponent {
   emojiMartConfig = {
     include: ["people"],
     style: {
-      "background-color": '#fcfcfc',
-      height: '100px', width: '300px',
-      overflow: 'scroll',
+      // "background-color": '#fcfcfc',
+      height: '80px', "overflow-y": 'hidden',
+      width: '300px',
+      border: '0px'
     }
   }
   groupNameSearch = ''
@@ -57,8 +58,8 @@ export class GroupListingComponent {
     this.getUserGroups()
     this.getUserList()
     this.intervalId = setInterval(() => {
-      // this.getSelectedGroupChat() //TODO
-    }, 1000)
+      this.getSelectedGroupChat() //TODO
+    }, 2500)
   }
   checkIfSearched(group: any) {
     return group?.name?.toLowerCase().includes(this.groupNameSearch?.toLowerCase())
@@ -68,8 +69,6 @@ export class GroupListingComponent {
     let group = this.sharedService.getFromLocalStorage('selectedGroup')
     if (group) {
       this.openGroupChat(group)
-      // this.selectedGroup = group
-      // this.selectedMembers = this.selectedGroup.members
     }
   }
 
@@ -137,6 +136,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }
@@ -145,7 +145,7 @@ export class GroupListingComponent {
 
   openGroupChat(group: any) {
     this.selectedGroup = group;
-    // this.sharedService.setInLocalStorage('selectedGroup', group)
+    this.sharedService.setInLocalStorage('selectedGroup', group)
     this.getSelectedGroupChat()
     this.selectedMembers = group.members
 
@@ -170,6 +170,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }
@@ -182,6 +183,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }
@@ -212,6 +214,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
 
@@ -240,6 +243,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }
@@ -251,6 +255,7 @@ export class GroupListingComponent {
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }
@@ -267,9 +272,11 @@ export class GroupListingComponent {
     this.groupService.addNewGroupMembers(payload).subscribe({
       next: (resp: any) => {
         console.log(resp);
+        this.sharedService.showSuccess("Members Updated Successfully")
       },
       error: (e) => {
         console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
       }
     })
   }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,23 @@ export class CommonApiService {
 
   constructor(
     public _route: Router,
-
+    private messageService: MessageService
   ) { }
 
+  public showSuccess(message: any) {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: message });
+  }
+  showInfo(message: any) {
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: message });
+  }
+
+  showWarn(message: any) {
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: message });
+  }
+
+  showError(message: any) {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message || 'Something Went Wrong' });
+  }
 
   public setUserLoggedIn(data: any): void {
     this.currentUser = data.user;

@@ -13,6 +13,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class LoginComponent {
 
   userForm: any;
+  hidePassword = true
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -57,9 +58,11 @@ export class LoginComponent {
           console.log(resp);
           this.userForm.reset()
           this.setRedirection(resp);
+          this.commonApiService.showSuccess('Logged In')
         },
         error: (e) => {
           console.error(e);
+          this.commonApiService.showError(e.error?.message || e.message)
         }
       })
     }

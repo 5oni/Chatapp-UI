@@ -64,3 +64,12 @@ i {
 .p-dialog .p-dialog-content {
   padding: 8px;
 }
+.emoji-mart-category-label {
+  display: none;
+}
+.emoji-mart-bar{
+  display: none;
+}
+.emoji-mart-category .emoji-mart-emoji span{
+  cursor: pointer !important;
+}

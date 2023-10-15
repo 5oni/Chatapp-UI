@@ -254,6 +254,16 @@ div::-webkit-scrollbar {
 .addGrpBtn {
   margin-left: 10px;
 }
+.no-content {
+  color: #685f5f;
+  display: flex;
+  justify-content: center;
+  margin: 20% 20%;
+  font-size: medium;
+  font-weight: 500
+}
+
+
 /* Media Query for Smaller Screens */
 @media screen and (max-width: 1500px) {
   .container {

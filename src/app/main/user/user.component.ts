@@ -35,6 +35,7 @@ export class UserComponent implements OnInit {
       },
       error: (e) => {
         console.error(e);
+        this.commonApiService.showError(e.error?.message || e.message)
       }
     })
   }

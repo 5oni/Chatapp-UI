@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { CommonApiService } from 'src/app/services/common-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-user',
@@ -11,14 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditUserComponent {
 
-
+  hidePassword = true
   userEditForm: FormGroup;
   userDetails: any
 
   constructor(private fb: FormBuilder, private userDataService: UserService,
     private commonApiService: CommonApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
 
 
   ) { }
@@ -111,6 +113,7 @@ export class EditUserComponent {
       },
       error: (e) => {
         console.error(e);
+        this.commonApiService.showError(e.error?.message || e.message)
       }
 
     })
@@ -127,14 +130,20 @@ export class EditUserComponent {
         next: (resp: any) => {
           console.log(resp);
           this.userEditForm.reset()
+          this.commonApiService.showSuccess("User Details Updated")
+
           this.router.navigate(['/main/user'])
         },
         error: (e) => {
           console.error(e);
+          this.commonApiService.showError(e.error?.message || e.message)
         }
       }
       )
     }
+  }
+  goBack(): void {
+    this.location.back();
   }
 
 }

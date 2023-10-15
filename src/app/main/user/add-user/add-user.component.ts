@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AddUserComponent {
   userForm: FormGroup;
+  hidePassword = true
   @Output()
   updateUsers: EventEmitter<any> = new EventEmitter();
 
@@ -93,9 +94,12 @@ export class AddUserComponent {
           console.log(resp);
           this.updateUsers.emit()
           this.userForm.reset()
+          this.commonApiService.showSuccess('User Added')
         },
         error: (e) => {
           console.error(e);
+          this.commonApiService.showError(e.error?.message || e.message)
+
         }
       }
       )

@@ -12,6 +12,8 @@ import { HeaderComponent } from './main/header/header.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 export const httpInterceptorProvider = [
   {
@@ -27,6 +29,7 @@ export const httpInterceptorProvider = [
   ],
   imports: [
     BrowserModule,
+    ToastModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -43,7 +46,8 @@ export const httpInterceptorProvider = [
     // FooterComponent,
   ],
   providers: [
-    httpInterceptorProvider
+    httpInterceptorProvider,
+    MessageService
 
   ],
   bootstrap: [AppComponent]

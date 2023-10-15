@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../user/services/user.service';
 import { GroupService } from '../services/group.service';
+import { CommonApiService } from 'src/app/services/common-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-group',
@@ -20,6 +22,8 @@ export class AddGroupComponent {
     private fb: FormBuilder,
     private userDataService: UserService,
     private groupService: GroupService,
+    private commonApiService: CommonApiService,
+    private router: Router
 
   ) { }
 
@@ -49,9 +53,12 @@ export class AddGroupComponent {
           console.log(resp);
           this.groupForm.reset()
           this.selectedMembers = []
+          this.commonApiService.showSuccess('Group Created')
+          this.router.navigate(['/main/group'])
         },
         error: (e) => {
           console.error(e);
+          this.commonApiService.showError(e.error?.message || e.message)
         }
       })
 
