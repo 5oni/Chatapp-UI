@@ -25,7 +25,7 @@ A step-by-step guide to help users install the project. Include code examples wh
 git clone https://github.com/5oni/Chatapp-UI.git
 
 # Navigate to the project folder
-cd chat-UI
+cd Chatapp-UI
 
 # Checkout to latest branch
 git checkout development
