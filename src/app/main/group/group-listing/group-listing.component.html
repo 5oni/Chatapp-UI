@@ -36,6 +36,8 @@
         <p-multiSelect [options]="usersList" [(ngModel)]="selectedMembers" defaultLabel="Add Members" optionLabel="name"
           display="chip"></p-multiSelect>
         <button (click)="addNewMembers()" class="add-btn" *ngIf="selectedMembers?.length">Update</button>
+
+        <button (click)="deleteGroup()" class="delete-grp-btn" >Delete Group</button>
       </div>
 
     </div>

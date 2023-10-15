@@ -23,6 +23,9 @@ export class GroupService {
   addNewGroup(data: any) {
     return this.http.post('/group/v1/add', data);
   }
+  deleteGroup(data: any) {
+    return this.http.post('/group/v1/delete', data);
+  }
   addNewGroupMembers(data: any) {
     return this.http.post('/group/v1/add/members', data);
   }

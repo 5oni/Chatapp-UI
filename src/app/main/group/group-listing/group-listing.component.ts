@@ -147,7 +147,7 @@ export class GroupListingComponent {
     this.selectedGroup = group;
     this.sharedService.setInLocalStorage('selectedGroup', group)
     this.getSelectedGroupChat()
-    this.selectedMembers = group.members
+    this.selectedMembers = group?.members || []
 
   }
 
@@ -273,6 +273,28 @@ export class GroupListingComponent {
       next: (resp: any) => {
         console.log(resp);
         this.sharedService.showSuccess("Members Updated Successfully")
+      },
+      error: (e) => {
+        console.error(e);
+        this.sharedService.showError(e.error?.message || e.message)
+      }
+    })
+  }
+
+  deleteGroup() {
+    if (!this.selectedGroup) {
+      return
+    }
+
+    let payload = {
+      groupId: this.selectedGroup?._id,
+    }
+    this.groupService.deleteGroup(payload).subscribe({
+      next: (resp: any) => {
+        console.log(resp);
+        this.getUserGroups()
+        this.openGroupChat(null)
+        this.sharedService.showSuccess("Group Deleted Successfully")
       },
       error: (e) => {
         console.error(e);

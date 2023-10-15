@@ -234,10 +234,24 @@ div::-webkit-scrollbar {
   max-height: 30px;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
+.delete-grp-btn{
+  background-color: #911403;
+  color: #fff; /* Light text color */
+  // width: 100%;
+  margin-left: 20px;
+  margin-top: 8px;
+  position: absolute;
+  padding: 8px;
+  max-height: 30px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 .searchAddBox {
   display: flex;
   padding: 10px;
