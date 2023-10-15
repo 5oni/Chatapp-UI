@@ -31,7 +31,8 @@ cd Chatapp-UI
 git checkout development
 
 # Install dependencies
-npm install
+npm install --f
+
 ```
 
 ### usage
